@@ -1,4 +1,4 @@
-public class Triangle implements Shape{
+public  class Triangle implements Shape,Comparable<Triangle>{
     private double a;
     private double b;
     private double c;
@@ -30,5 +30,19 @@ public class Triangle implements Shape{
     @Override
     public double calcPerimeter() {
         return a+b+c;
+    }
+
+    @Override
+    public int compareTo(Triangle other) {
+        if(this.calcArea() == other.calcArea()) {
+            return 0;
+        }
+        else if (this.calcArea() > other.calcArea()) {
+            return -1;
+
+        }
+        else {
+            return 1;
+        }
     }
 }

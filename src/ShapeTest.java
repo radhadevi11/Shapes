@@ -35,13 +35,13 @@ class ShapeTest {
     }
     @Test
     void testEllipseArea(){
-        Shape ellipse = new Ellipse(5,5);
-        assertEquals(78.5,ellipse.calcArea());
+        Shape ellipse = new Ellipse(10,40);
+        assertEquals(1256,ellipse.calcArea());
     }
     @Test
     void testEllipsePerimeter(){
-        Shape ellipse = new Ellipse(5,5);
-        assertEquals(31.4,ellipse.calcPerimeter());
+        Shape ellipse = new Ellipse(20,70);
+        assertEquals(323,ellipse.calcPerimeter());
     }
     @Test
     void testCircleArea(){
