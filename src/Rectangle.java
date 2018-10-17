@@ -1,4 +1,4 @@
-public class Rectangle implements Shape,Comparable<Rectangle> {
+public class Rectangle implements Shape{
    private double width;
    private double height;
 
@@ -25,19 +25,19 @@ public class Rectangle implements Shape,Comparable<Rectangle> {
     public double calcPerimeter() {
         return 2*(width+height);
     }
-
-
-    @Override
-    public int compareTo(Rectangle other) {
-        if(this.calcArea() == other.calcArea()) {
-            return 0;
+    public boolean equals(Object other) {
+        if (other instanceof Rectangle) {
+            Rectangle otherRectangle = (Rectangle) other;
+            if (this.width == (otherRectangle.width) && this.height == (otherRectangle.height)) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else if (this.calcArea() > other.calcArea()) {
-            return -1;
-
-        }
-        else {
-            return 1;
-        }
+        return false;
     }
+
+
+
 }

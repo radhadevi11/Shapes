@@ -1,4 +1,4 @@
-public  class Triangle implements Shape,Comparable<Triangle>{
+public  class Triangle implements Shape{
     private double a;
     private double b;
     private double c;
@@ -31,18 +31,16 @@ public  class Triangle implements Shape,Comparable<Triangle>{
     public double calcPerimeter() {
         return a+b+c;
     }
-
-    @Override
-    public int compareTo(Triangle other) {
-        if(this.calcArea() == other.calcArea()) {
-            return 0;
+    public boolean equals(Object other) {
+        if (other instanceof Triangle) {
+            Triangle otherTriangle = (Triangle) other;
+            if (this.a == otherTriangle.a && this.b == otherTriangle.b && this.c == otherTriangle.c ) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else if (this.calcArea() > other.calcArea()) {
-            return -1;
-
-        }
-        else {
-            return 1;
-        }
+        return false;
     }
 }

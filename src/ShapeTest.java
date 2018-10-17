@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShapeTest {
@@ -45,14 +48,40 @@ class ShapeTest {
     }
     @Test
     void testCircleArea(){
-        Shape circle = new Circle(20);
-        assertEquals(1256,circle.calcArea());
+        Shape circle = new Circle(21);
+        assertEquals(1385,circle.calcArea());
     }
     @Test
     void testCirclePerimeter(){
         Shape circle = new Circle(40);
-        assertEquals(251.2,circle.calcPerimeter());
+        assertEquals(251.0,circle.calcPerimeter());
     }
+    //create arrayList of shapes put different shape in wrong order of area
+    //use Collections.sort() to sort the arrayList
+    //assert that the shapes are now in correct order of area
+    //   if assert fails read java doc of compareTo method check the compareTo code
 
+    @Test
+    void testCompareTo(){
+        ArrayList<Shape> shapes = new ArrayList<>();
+        shapes.add(new Circle((21)));
+        shapes.add(new Rectangle(4,4));
+        shapes.add(new Ellipse(10,40));
+        shapes.add(new Square(8));
+        shapes.add(new Triangle(3,4,5));
+
+        Collections.sort(shapes);
+
+        ArrayList<Shape> expected = new ArrayList<>();
+        expected.add(new Triangle(3,4,5));
+        expected.add(new Rectangle(4,4));
+        expected.add(new Square(8));
+        expected.add(new Ellipse(10,40));
+        expected.add(new Circle(21));
+
+        assertEquals(expected,shapes);
+
+
+    }
 
 }

@@ -1,6 +1,6 @@
 import static java.lang.Math.round;
 
-public class Ellipse implements Shape,Comparable<Ellipse> {
+public class Ellipse implements Shape {
 
     private double a;
     private double b;
@@ -28,17 +28,17 @@ public class Ellipse implements Shape,Comparable<Ellipse> {
         return round(2*3.14*Math.sqrt((Math.pow(a,2)+Math.pow(b,2))/2));
     }
 
-    @Override
-    public int compareTo(Ellipse other) {
-        if(this.calcArea() == other.calcArea()) {
-            return 0;
+    public boolean equals(Object other) {
+        if (other instanceof Ellipse) {
+            Ellipse otherEllipse = (Ellipse) other;
+            if (this.a == (otherEllipse.a) && this.b == (otherEllipse.b)) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else if (this.calcArea() > other.calcArea()) {
-            return -1;
-
-        }
-        else {
-            return 1;
-        }
+        return false;
     }
+
 }
