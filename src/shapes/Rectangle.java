@@ -1,3 +1,7 @@
+package shapes;
+
+import javafx.scene.canvas.GraphicsContext;
+
 public class Rectangle implements Shape{
    private double width;
    private double height;
@@ -38,6 +42,8 @@ public class Rectangle implements Shape{
         return false;
     }
 
-
-
+    @Override
+    public void draw(double xCoordinate, double yCoordinate, GraphicsContext gc) {
+        gc.strokeRect(xCoordinate,yCoordinate,this.width,this.height);
+    }
 }

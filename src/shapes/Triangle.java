@@ -1,3 +1,7 @@
+package shapes;
+
+import javafx.scene.canvas.GraphicsContext;
+
 public  class Triangle implements Shape{
     private double a;
     private double b;

@@ -1,12 +1,14 @@
+package shapes;
+
 import java.util.ArrayList;
 
 public class ShapeAnalyzer {
 
     public Shape findBiggestShape(ArrayList<Shape> shapes) {
         /*Algorithm
-          Step1:create a Shape type variable biggestShape and assaign it to 0th position shape in the arrayList
+          Step1:create a shapes.Shape type variable biggestShape and assaign it to 0th position shape in the arrayList
           step2:For each shape
-                  i)compare biggestShape's area with this Shape(using compareTo)
+                  i)compare biggestShape's area with this shapes.Shape(using compareTo)
                   ii)if it is return -1 assaign this shape to biggestShape
                   iii)otherwise move to the nextShape
           Step3:return biggestShape
@@ -34,10 +36,10 @@ public class ShapeAnalyzer {
     public Shape findBiggestPerimeterShape(ArrayList<Shape> shapes) {
         Shape biggestPerimeterShape = shapes.get(0);
         double biggestPerimeterValue = shapes.get(0).calcPerimeter();
-        for (int i = 1; i < shapes.size(); i++) {
-            if (shapes.get(i).calcPerimeter() > biggestPerimeterValue) {
-                biggestPerimeterValue = shapes.get(i).calcPerimeter();
-                biggestPerimeterShape = shapes.get(i);
+        for (Shape shape : shapes) {
+            if (shape.calcPerimeter() > biggestPerimeterValue) {
+                biggestPerimeterValue = shape.calcPerimeter();
+                biggestPerimeterShape = shape;
             }
         }
         return biggestPerimeterShape;
@@ -46,10 +48,10 @@ public class ShapeAnalyzer {
     public Shape findSmallestPerimeterShape(ArrayList<Shape> shapes) {
         Shape smallestPerimeterShape = shapes.get(0);
         double smallestPerimeterValue = shapes.get(0).calcPerimeter();
-        for (int i = 1; i < shapes.size(); i++) {
-            if (shapes.get(i).calcPerimeter() < smallestPerimeterValue) {
-                smallestPerimeterValue = shapes.get(i).calcPerimeter();
-                smallestPerimeterShape = shapes.get(i);
+        for (Shape shape : shapes) {
+            if (shape.calcPerimeter() < smallestPerimeterValue) {
+                smallestPerimeterValue = shape.calcPerimeter();
+                smallestPerimeterShape = shape;
             }
         }
         return smallestPerimeterShape;

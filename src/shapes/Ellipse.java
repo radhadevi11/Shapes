@@ -1,3 +1,7 @@
+package shapes;
+
+import javafx.scene.canvas.GraphicsContext;
+
 import static java.lang.Math.round;
 
 public class Ellipse implements Shape {
@@ -41,4 +45,8 @@ public class Ellipse implements Shape {
         return false;
     }
 
+    @Override
+    public void draw(double xCoordinate, double yCoordinate, GraphicsContext gc) {
+        gc.strokeOval(xCoordinate,yCoordinate,this.a,this.b);
+    }
 }
