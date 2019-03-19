@@ -3,7 +3,6 @@ package drawing;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventTarget;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -83,6 +82,28 @@ public class ShapePainter extends Application {
     public static void main(String[] args){
         launch();
     }*/
+
+    public static void drawOnCanvas(){
+        EventHandler<ActionEvent> eventHandler = event -> {
+            if(event.getTarget() instanceof Button) {
+                if(((Button) event.getTarget()).getText().equals("Rectangle")){
+                      drawShapes(getRectangleShape());
+                }
+            }
+
+        };
+
+    }
+
+    private static ArrayList<CanvasShape> getRectangleShape(){
+        ArrayList<CanvasShape> shape = new ArrayList<>();
+        EventHandler<MouseEvent> mouseEventEventHandler = event ->shape.add(new CanvasShape
+                        (new Rectangle(20,30),
+                                event.getX(),
+                                event.getY()));
+        return shape;
+
+    }
 
 }
 
