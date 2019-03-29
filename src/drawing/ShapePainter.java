@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 public class ShapePainter extends Application {
    private static ArrayList<CanvasShape> canvasShapes = new ArrayList<>();
+    Canvas canvas = new Canvas(300, 250);
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    Shape shape;
 
    @Override
     public void start(Stage primaryStage) {
@@ -30,8 +33,8 @@ public class ShapePainter extends Application {
         rectangle.setOnAction(eventHandler);
         ellipse.setOnAction(eventHandler);
         circle.setOnAction(eventHandler);
-        Canvas canvas = new Canvas(300, 250);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+      //  Canvas canvas = new Canvas(300, 250);
+       // GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapesOnCanvas(gc);
         root.getChildren().add(canvas);
         root.getChildren().add(toolBar);
@@ -41,13 +44,28 @@ public class ShapePainter extends Application {
     }
    EventHandler<ActionEvent> eventHandler = event -> {
        if(event.getTarget() instanceof Button) {
-           System.out.println("User clicked " + ((Button) event.getTarget()).getText() + " button");
+
+           if(((Button) event.getTarget()).getText().equals("Rectangle")){
+               shape = new Rectangle(20,30);
+           }
+           else if(((Button) event.getTarget()).getText().equals("Ellipse")){
+               shape = new Ellipse(30,20);
+           }
+           else {
+               shape = new Circle(20);
+           }
        }
 
+
    };
-   EventHandler<MouseEvent> mouseEventEventHandler = event -> System.out.println
+   EventHandler<MouseEvent> mouseEventEventHandler = event ->{
+      shape.draw(event.getX(),event.getY(),gc);
+   };/*System.out.println
            ("x co-ordinate of scene is "+ event.getSceneX()+" Y co-ordinate of scene is "+event.getSceneY()+
-           "x co-ordinate of canvas is "+event.getX()+" y co-ordinate of canvas is "+event.getY());
+           "x co-ordinate of canvas is "+event.getX()+" y co-ordinate of canvas is "+event.getY()
+           );*/
+
+
 
     public static void drawShapes(ArrayList<CanvasShape> shapes) {
         canvasShapes = shapes;
@@ -83,27 +101,7 @@ public class ShapePainter extends Application {
         launch();
     }*/
 
-    public static void drawOnCanvas(){
-        EventHandler<ActionEvent> eventHandler = event -> {
-            if(event.getTarget() instanceof Button) {
-                if(((Button) event.getTarget()).getText().equals("Rectangle")){
-                      drawShapes(getRectangleShape());
-                }
-            }
 
-        };
-
-    }
-
-    private static ArrayList<CanvasShape> getRectangleShape(){
-        ArrayList<CanvasShape> shape = new ArrayList<>();
-        EventHandler<MouseEvent> mouseEventEventHandler = event ->shape.add(new CanvasShape
-                        (new Rectangle(20,30),
-                                event.getX(),
-                                event.getY()));
-        return shape;
-
-    }
 
 }
 

@@ -27,7 +27,6 @@ public class ShapePainterMain {
         shapes.add(new CanvasShape(new Circle(25),65,87));
         shapes.add(new CanvasShape(new Circle(25),190,87));
         ShapePainter.drawShapes(shapes);
-        ShapePainter.drawOnCanvas();
 
     }
 }
