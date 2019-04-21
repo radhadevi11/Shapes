@@ -7,4 +7,9 @@ public class Circle extends Ellipse {
 
     }
 
+    @Override
+    public String toString(){
+        return "Circle";
+    }
+
 }

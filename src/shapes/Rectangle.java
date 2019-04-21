@@ -46,4 +46,10 @@ public class Rectangle implements Shape{
     public void draw(double xCoordinate, double yCoordinate, GraphicsContext gc) {
         gc.strokeRect(xCoordinate,yCoordinate,this.width,this.height);
     }
+
+    @Override
+    public String toString(){
+        return "Rectangle";
+    }
+
 }

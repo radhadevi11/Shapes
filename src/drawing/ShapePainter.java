@@ -14,13 +14,14 @@ import javafx.stage.Stage;
 import shapes.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ShapePainter extends Application {
-   private static ArrayList<CanvasShape> canvasShapes = new ArrayList<>();
     Canvas canvas = new Canvas(300, 250);
     GraphicsContext gc = canvas.getGraphicsContext2D();
     Shape shape;
+    List<CanvasShape> shapesDrawn = new ArrayList<>();
 
    @Override
     public void start(Stage primaryStage) {
@@ -29,37 +30,48 @@ public class ShapePainter extends Application {
         Button rectangle = new Button("Rectangle");
         Button ellipse = new Button("Ellipse");
         Button circle = new Button("Circle");
-        ToolBar toolBar = new ToolBar(rectangle,ellipse,circle);
+        Button save = new Button("Save");
+        ToolBar toolBar = new ToolBar(rectangle,ellipse,circle,save);
         rectangle.setOnAction(eventHandler);
         ellipse.setOnAction(eventHandler);
         circle.setOnAction(eventHandler);
+        save.setOnAction(eventHandlerForSave);
       //  Canvas canvas = new Canvas(300, 250);
        // GraphicsContext gc = canvas.getGraphicsContext2D();
-        drawShapesOnCanvas(gc);
         root.getChildren().add(canvas);
         root.getChildren().add(toolBar);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         canvas.setOnMouseClicked(mouseEventEventHandler);
     }
-   EventHandler<ActionEvent> eventHandler = event -> {
+
+    EventHandler<ActionEvent> eventHandlerForSave = event ->{
+       for (CanvasShape shape : shapesDrawn){
+           System.out.println(shape);
+       }
+    };
+            EventHandler<ActionEvent> eventHandler = event -> {
        if(event.getTarget() instanceof Button) {
 
            if(((Button) event.getTarget()).getText().equals("Rectangle")){
                shape = new Rectangle(20,30);
+
            }
            else if(((Button) event.getTarget()).getText().equals("Ellipse")){
                shape = new Ellipse(30,20);
+
            }
            else {
                shape = new Circle(20);
+
            }
        }
 
 
    };
    EventHandler<MouseEvent> mouseEventEventHandler = event ->{
-      shape.draw(event.getX(),event.getY(),gc);
+       shape.draw(event.getX(),event.getY(),gc);
+       shapesDrawn.add(new CanvasShape(shape,event.getX(),event.getY()));
    };/*System.out.println
            ("x co-ordinate of scene is "+ event.getSceneX()+" Y co-ordinate of scene is "+event.getSceneY()+
            "x co-ordinate of canvas is "+event.getX()+" y co-ordinate of canvas is "+event.getY()
@@ -67,23 +79,10 @@ public class ShapePainter extends Application {
 
 
 
-    public static void drawShapes(ArrayList<CanvasShape> shapes) {
-        canvasShapes = shapes;
+    public static void doLaunch() {
         launch();
     }
-    private void drawShapesOnCanvas(GraphicsContext graphicsContext){
-        /*Algorithm
-        Step1:For each CanvasShape do
-                 i)if the CanvasShape is an ellipse then draw the ellipse in the canvas using the strokeOval method.
-                    Note:a)For this method we need 4 arguments(x-coordinate,y-coordinate,majorAxis,MinorAxis)
-                    b)These four arguments are the member variables of CanvasShape,So we can access those variables
-                    using the canvasShape Object.
-                 ii)if the CanvasShape is a rectangle then draw the rectangle in the canvas using the strokeRect method.
-         */
-        for (CanvasShape canvasShape : canvasShapes){
-                canvasShape.getShape().draw(canvasShape.getxCoordinate(),canvasShape.getyCoordinate(),graphicsContext);
-        }
-    }
+
     /*@Override
     public void start(Stage primaryStage) {
         double[] xCoordinates = new double[]{10,10,50};

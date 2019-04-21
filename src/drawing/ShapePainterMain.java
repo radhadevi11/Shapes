@@ -16,17 +16,16 @@ public class ShapePainterMain {
 
     }
     public static void drawFace(){
-        CanvasShape canvasShape1 = new CanvasShape(new Circle(20),105,70);
-        CanvasShape canvasShape2 = new CanvasShape(new Rectangle(10,20),133,100);
-        ArrayList<CanvasShape> shapes = new ArrayList<>();
-        shapes.add(canvasShape1);
-        shapes.add(canvasShape2);
-        shapes.add(new CanvasShape(new Circle(20),150,70));
+        /*CanvasShape canvasShape1 = new CanvasShape(new Circle(20),105,70);
+        CanvasShape canvasShape2 = new CanvasShape(new Rectangle(10,20),133,100);*/
+       /* shapes.add(canvasShape1);
+        shapes.add(canvasShape2);*/
+        /*shapes.add(new CanvasShape(new Circle(20),150,70));
         shapes.add(new CanvasShape(new Circle(100),90,50));
         shapes.add(new CanvasShape(new Ellipse(35,5),120,129));
         shapes.add(new CanvasShape(new Circle(25),65,87));
-        shapes.add(new CanvasShape(new Circle(25),190,87));
-        ShapePainter.drawShapes(shapes);
+        shapes.add(new CanvasShape(new Circle(25),190,87));*/
+        ShapePainter.doLaunch();
 
     }
 }

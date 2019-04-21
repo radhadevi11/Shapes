@@ -47,4 +47,10 @@ public  class Triangle implements Shape{
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "Triangle";
+    }
+
 }
